@@ -1,0 +1,45 @@
+1.实验环境
+	1.1 计算机:Intel Pentium Dual-core 2.06GHz, 1.50GB 的内存
+	1.2 操作系统:ubuntu 10.04 Lucid Lynx
+	1.3 程序设计语言:C shell 脚本
+	1.4 编译环境:gcc 4.4.3
+	1.5 调试环境:gdb 7.1-ubuntu
+2.文件内容
+	tianwei/	根文件夹
+	tianwei/src/	源码文件夹
+		./soft.sh		程序执行总 shell 脚本
+		./seq.sh		中文词汇测试文件生成序列 shell 脚本
+		./rightTest.sh		准确律检测 shell 脚本
+		./hmm.sh		HMM 模型生成 shell 脚本
+		./showViterbi.sh	Viterbi 训练脚本
+		./ttrain.sh		分组去除词性标注,生成概率文件脚本
+	tianwei/src/	源码文件夹
+		./eva.c			准确率检测工具源码
+		./hmm.c			hmm 模型生成源码
+		./moveMatrix.c		计算概率矩阵源码
+		./seq.c			检测文件中文单词生成序列
+		./showViterbi.c viterbi.c viterbi.h	Viterbi 算法
+	tianwei/src/
+		./Makefile	Makefile 文件
+	tianwei/Training/	初始训练文件
+	tianwei/ReadMe.txt	程序安装及运行方法
+3.实验原理
+	3.1词性标注,简称标注,即为句子中每个词都标上一个合适的词性,也就是要确定每个词的名词、动词、形容词或其它词性。
+	3.2 词性标注方法:包括基于规则的标注方法(Rule-based tagging)、基于统计的标注方法(Statistical tagging)和基于转换的标注方法(Transformation-based tagging)。实验中采用基于统计的标注方法。
+	3.3 隐马尔科夫模型 HMM 的计算步骤:计算观察序列的概率;计算能够解释观察序列的最大可能的状态序列;根据观察序列寻找最佳参数模型。
+	3.4 Viterbi 算法,用于搜索能够生成观察序列的最大概率的状态序列 。Viterbi 能够找到最佳解,其思想精髓在于将全局最佳解的计算过程分解为阶段最佳解的计算。
+
+4.运行过程
+	4.1 运行./soft.sh,出现界面,选择相应数字,运行程序
+	4.2 执行 0 和 1 分别进行编译和文件自动分组,生成文件夹 train*,同时为了提升训练速度,将文件进行合并。训练文件分组由 shell 脚本完成。
+	4.3 熟悉并清理语料,把训练语料中句子的序号删除(进行交叉测试时需要使用,即交叉测试时,需要把做作为测试语料的训练语料中的词性标记删除)。通过 sed 工具完成。
+	4.4 执行 2,生成 HMM 训练文件
+	4.5 对检测文件(去除词性标注的文件)进行序列化,格式如下(数字索引是中文词典中单词位置)
+	4.6 采用 Viterb 算法进行词性标注,生成标注文件
+	4.7 从自己分好的 5 组训练语料中,选择 4 组作为训练,剩余 1 组作为测试语料,进行交叉实验,并记录实验结果。(共进行 5 次)写入到res.crt 文件中
+
+5. 其他详细运行结果请参看PDF报告
+
+
+
+

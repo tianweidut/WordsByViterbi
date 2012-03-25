@@ -1,0 +1,4 @@
+1:#!/bin/bash
+2:#rename file extesions 89
+3:# 89
+4:#     rfe old_extensions new_extension 90
